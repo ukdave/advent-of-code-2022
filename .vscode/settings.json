@@ -1,0 +1,12 @@
+{
+  "[crystal]": {
+    "editor.formatOnSave": true
+  },
+  "crystal-lang.completion": true,
+  "crystal-lang.hover": true,
+  "crystal-lang.implementations": true,
+  "crystal-lang.problems": "build",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+}

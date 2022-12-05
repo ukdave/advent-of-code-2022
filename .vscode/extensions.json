@@ -1,0 +1,6 @@
+{
+  "recommendations": [
+    "crystal-lang-tools.crystal-lang",
+    "veelenga.crystal-ameba"
+  ]
+}

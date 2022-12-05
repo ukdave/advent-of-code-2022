@@ -1,0 +1,12 @@
+Lint/ComparisonToBoolean:
+  Enabled: true
+
+Style/GuardClause:
+  Enabled: true
+
+Style/LargeNumbers:
+  Enabled: true
+
+Layout/LineLength:
+  Enabled: true
+  MaxLength: 120
