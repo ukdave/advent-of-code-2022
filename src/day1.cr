@@ -10,4 +10,8 @@ class Day1
   def max_calories
     @elf_calories.max
   end
+
+  def calories_top_3
+    @elf_calories.sort.last(3).sum
+  end
 end

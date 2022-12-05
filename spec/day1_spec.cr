@@ -28,4 +28,10 @@ Spectator.describe Day1 do
       expect(day1.max_calories).to eq(24_000)
     end
   end
+
+  describe "#calories_top_3" do
+    it "returns the sum of the calories carried by the top three Elves carrying the most calories" do
+      expect(day1.calories_top_3).to eq(45_000)
+    end
+  end
 end
