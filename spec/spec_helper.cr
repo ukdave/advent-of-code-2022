@@ -1,2 +1,1 @@
 require "spectator"
-require "../src/*"
