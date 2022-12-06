@@ -7,6 +7,8 @@ authors:
 targets:
   day1:
     main: src/day1_bin.cr
+  day2:
+    main: src/day2_bin.cr
 
 crystal: 1.6.2
 
