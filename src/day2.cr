@@ -1,15 +1,22 @@
 class Day2
-  @rounds : Array(Round)
+  @round_codes : Array(Array(String))
 
-  def initialize(lines)
-    @rounds = lines.map { |line|
-      moves = line.split(" ", 2)
-      Round.new(moves.first, moves.last)
-    }
+  def initialize(lines : Array(String))
+    @round_codes = lines.map(&.split(" ", 2))
   end
 
-  def score
-    @rounds.sum(&.score)
+  def score_part1
+    rounds = @round_codes.map { |codes|
+      Round.new(ITEM_CODES[codes.first], ITEM_CODES[codes.last])
+    }
+    rounds.sum(&.score)
+  end
+
+  def score_part2
+    rounds = @round_codes.map { |codes|
+      Round.new(ITEM_CODES[codes.first], OUTCOME_CODES[codes.last])
+    }
+    rounds.sum(&.score)
   end
 end
 
@@ -25,16 +32,22 @@ enum Outcome
   Win   = 6
 end
 
-class Round
-  ITEM_CODES = {
-    "A" => Item::Rock,
-    "B" => Item::Paper,
-    "C" => Item::Scissors,
-    "X" => Item::Rock,
-    "Y" => Item::Paper,
-    "Z" => Item::Scissors,
-  }
+ITEM_CODES = {
+  "A" => Item::Rock,
+  "B" => Item::Paper,
+  "C" => Item::Scissors,
+  "X" => Item::Rock,
+  "Y" => Item::Paper,
+  "Z" => Item::Scissors,
+}
 
+OUTCOME_CODES = {
+  "X" => Outcome::Loose,
+  "Y" => Outcome::Draw,
+  "Z" => Outcome::Win,
+}
+
+class Round
   OUTCOME_MAP = {
     Item::Rock => {
       Item::Rock     => Outcome::Draw,
@@ -53,12 +66,16 @@ class Round
     },
   }
 
-  @item1 : Item
-  @item2 : Item
+  getter item2
 
-  def initialize(item1 : String, item2 : String)
-    @item1 = ITEM_CODES[item1]
-    @item2 = ITEM_CODES[item2]
+  def initialize(item1 : Item, item2 : Item)
+    @item1 = item1
+    @item2 = item2
+  end
+
+  def initialize(item1 : Item, outcome : Outcome)
+    @item1 = item1
+    @item2 = OUTCOME_MAP[item1].key_for(outcome)
   end
 
   def score
