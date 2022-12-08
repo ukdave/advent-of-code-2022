@@ -9,6 +9,8 @@ targets:
     main: src/day1_bin.cr
   day2:
     main: src/day2_bin.cr
+  day3:
+    main: src/day3_bin.cr
 
 crystal: 1.6.2
 
