@@ -1,20 +1,30 @@
 class Day3
   PRIORITIES = ('a'..'z').to_a + ('A'..'Z').to_a
 
-  @rucksack_compartments : Array(Array(String))
+  @rucksacks : Array(String)
 
   def initialize(lines : Array(String))
-    @rucksack_compartments = lines.map { |line| split_string(line) }
+    @rucksacks = lines
   end
 
-  def sum_priorities
-    @rucksack_compartments.sum do |(c1, c2)|
-      PRIORITIES.index!(common_item(c1, c2)) + 1
+  def sum_priorities_rucksack_compartment_common_item
+    @rucksacks.sum do |rucksack|
+      compartments = split_string(rucksack)
+      common_item = find_common_item(compartments)
+      PRIORITIES.index!(common_item) + 1
     end
   end
 
-  private def common_item(compartment1, compartment2)
-    (compartment1.chars & compartment2.chars).first
+  def sum_priorities_group_common_item
+    @rucksacks.each_slice(3, true).sum do |group|
+      common_item = find_common_item(group)
+      PRIORITIES.index!(common_item) + 1
+    end
+  end
+
+  private def find_common_item(compartments)
+    compartment_items = compartments.map(&.chars)
+    compartment_items.first.find { |item| compartment_items[1..].all?(&.includes?(item)) }
   end
 
   private def split_string(str)
