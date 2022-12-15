@@ -15,9 +15,15 @@ Spectator.describe Day4 do
     EOF
   }
 
-  describe "#num_overlaps" do
-    it "returns the number of overlaps" do
-      expect(day4.num_overlaps).to eq 2
+  describe "#num_full_overlaps" do
+    it "returns the number of full overlaps" do
+      expect(day4.num_full_overlaps).to eq 2
+    end
+  end
+
+  describe "#num_partial_overlaps" do
+    it "returns the number of partial overlaps" do
+      expect(day4.num_partial_overlaps).to eq 4
     end
   end
 end

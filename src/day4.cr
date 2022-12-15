@@ -7,9 +7,15 @@ class Day4
     end
   end
 
-  def num_overlaps
+  def num_full_overlaps
     @range_pairs.count do |pair|
-      range_covers?(pair.first, pair.last) || range_covers?(pair.last, pair.first)
+      range_fully_covers?(pair.first, pair.last) || range_fully_covers?(pair.last, pair.first)
+    end
+  end
+
+  def num_partial_overlaps
+    @range_pairs.count do |pair|
+      range_partially_covers?(pair.first, pair.last) || range_partially_covers?(pair.last, pair.first)
     end
   end
 
@@ -18,7 +24,11 @@ class Day4
     (first..last)
   end
 
-  private def range_covers?(range1, range2)
+  private def range_fully_covers?(range1, range2)
     range1.includes?(range2.begin) && range1.includes?(range2.end)
+  end
+
+  private def range_partially_covers?(range1, range2)
+    range1.includes?(range2.begin) || range1.includes?(range2.end)
   end
 end
